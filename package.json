@@ -1,0 +1,17 @@
+{
+  "name": "dnd-made-easy",
+  "version": "1.0.0",
+  "description": "Backend for DnD combat system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dnd",
+    "combat",
+    "nodejs",
+    "express"
+  ],
+  "author": "Jacopo Franciosi",
+  "license": "ISC"
+}
