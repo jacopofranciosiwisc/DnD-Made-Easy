@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 // Character Routes
 router.post('/', async (req, res) => {
-	const { userId, name, stats } = req.body;
+	const { name, stats } = req.body;
 
 	try {
 		// Create a new character in the database
