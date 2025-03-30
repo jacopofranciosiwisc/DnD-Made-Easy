@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   height: 100vh;
 }
 
@@ -13,7 +14,14 @@ h2 {
   text-align: center;
 }
 
-.buttons {
+.main-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1;
+}
+
+.auth-area {
   display: flex;
   align-items: center;
   justify-content: center;
