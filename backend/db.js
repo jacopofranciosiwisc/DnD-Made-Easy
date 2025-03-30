@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
+require('dotenv').config(); // Load environment variables from .env
 
 const pool = new Pool({
-	user: 'your_username',
-	host: 'localhost',
-	database: 'your_database',
-	password: 'your_password',
-	port: 5432, // Default PostgreSQL port
+	connectionString: process.env.DATABASE_URL, // load from env variable
+	ssl: {
+		rejectUnauthorized: false, // required for Neon (or other managed databases)
+	},
 });
 
 module.exports = pool;
