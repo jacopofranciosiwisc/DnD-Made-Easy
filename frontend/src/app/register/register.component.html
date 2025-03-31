@@ -3,8 +3,25 @@
     <mat-card-title>Register Below</mat-card-title>
   </mat-card-header>
   <mat-card-content class="form-container">
-    <input [(ngModel)]="credentials.email" name="email" type="text" />
-    <input name="password" type="password" />
-    <button type="submit">Register</button>
+    <input
+      [(ngModel)]="credentials.email"
+      name="email"
+      type="email"
+      placeholder="baltazar@gmail.com"
+    />
+    <input
+      [(ngModel)]="credentials.password"
+      name="password"
+      type="password"
+      placeholder="password123"
+    />
+    <input
+      [(ngModel)]="credentials.username"
+      name="username"
+      type="text"
+      placeholder="mightydice20"
+    />
+
+    <button type="submit" (click)="registerUser()">Register</button>
   </mat-card-content>
 </mat-card>

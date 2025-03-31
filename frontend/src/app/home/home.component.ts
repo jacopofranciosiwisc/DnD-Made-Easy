@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../services/auth.service';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
@@ -15,7 +14,7 @@ export class HomeComponent {
   isLoggingIn: boolean = false;
   isRegistering: boolean = true;
 
-  constructor(private authService: AuthService) {}
+  constructor() {}
 
   registerUser() {
     // this.authService.registerUser()
