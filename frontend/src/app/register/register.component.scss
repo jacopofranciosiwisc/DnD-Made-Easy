@@ -1,25 +1,36 @@
 @use "@angular/material" as mat;
 
 .register-card {
-  width: 50vw;
+  width: 40vw;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+mat-card-content {
+  width: 60%;
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  width: 80%;
+  margin: 1rem;
   gap: 1rem;
-  padding: 2rem 1rem;
 }
 
 .form-container input {
   height: 1.5rem;
+  width: 100%;
 }
 
 .form-container button {
-  width: 20%;
   margin: 0 auto;
+}
+
+.error {
+  margin: 0;
+  padding: 0;
+  color: red;
 }
