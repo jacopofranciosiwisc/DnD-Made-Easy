@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dnd-register',
@@ -24,11 +25,15 @@ export class RegisterComponent {
     username: '',
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   registerUser() {
     this.authService.registerUser(this.credentials).subscribe({
       error: (error) => console.error('Error registering user:', error),
     });
+  }
+
+  returnHome() {
+    this.router.navigate(['/home']);
   }
 }
