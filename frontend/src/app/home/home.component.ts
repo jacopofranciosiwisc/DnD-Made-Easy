@@ -12,13 +12,12 @@ import { RegisterComponent } from '../register/register.component';
 export class HomeComponent {
   loggedIn: boolean = false;
   isLoggingIn: boolean = false;
-  isRegistering: boolean = true;
+  isRegistering: boolean = false;
 
   constructor() {}
 
   registerUser() {
-    // this.authService.registerUser()
-    // this.isRegistering = !this.isRegistering;
+    this.isRegistering = !this.isRegistering;
   }
 
   loginUser() {
