@@ -5,6 +5,9 @@ const app = express();
 // Middleware to parse JSON requests
 app.use(express.json());
 
+const cors = require('cors');
+app.use(cors());
+
 // Define a basic route
 app.get('/', (req, res) => {
 	res.send('Welcome to the D&D Combat System Backend!');

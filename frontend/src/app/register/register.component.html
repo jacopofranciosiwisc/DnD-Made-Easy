@@ -1,0 +1,58 @@
+<mat-card class="register-card">
+  <mat-card-header>
+    <mat-card-title>Register Below</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      class="form-container"
+      #signInForm="ngForm"
+      (ngSubmit)="registerUser()"
+    >
+      <input
+        [(ngModel)]="credentials.email"
+        name="email"
+        type="email"
+        required
+        email
+        #email="ngModel"
+        placeholder="baltazar@gmail.com"
+      />
+      <em class="error" *ngIf="email.errors?.['required'] && email.touched">
+        Email is required
+      </em>
+      <em class="error" *ngIf="email.errors?.['email'] && email.touched">
+        Invalid email format
+      </em>
+      <input
+        [(ngModel)]="credentials.password"
+        name="password"
+        type="password"
+        required
+        #password="ngModel"
+        placeholder="password123"
+      />
+      <em
+        class="error"
+        *ngIf="password.errors?.['required'] && password.touched"
+      >
+        Password is required
+      </em>
+      <input
+        [(ngModel)]="credentials.username"
+        name="username"
+        type="text"
+        required
+        #username="ngModel"
+        placeholder="mightydice20"
+      />
+      <em
+        class="error"
+        *ngIf="username.errors?.['required'] && username.touched"
+      >
+        Username is required
+      </em>
+
+      <button type="submit" [disabled]="signInForm.invalid">Register</button>
+    </form>
+  </mat-card-content>
+</mat-card>

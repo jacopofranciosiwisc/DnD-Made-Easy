@@ -4,12 +4,10 @@ const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Character Routes
 router.post('/', async (req, res) => {
 	const { name, stats } = req.body;
 
 	try {
-		// Create a new character in the database
 		const newCharacter = await prisma.character.create({
 			data: {
 				name,
@@ -28,6 +26,10 @@ router.post('/', async (req, res) => {
 			error: error.message,
 		});
 	}
+});
+
+router.get('/', async (req, res) => {
+	res.send("We'll grab the characters from here");
 });
 
 module.exports = router;
