@@ -9,8 +9,6 @@
     <button>Load Session</button>
   </div>
 
-  <dnd-register *ngIf="isRegistering"></dnd-register>
-
   <div class="auth-area" *ngIf="!loggedIn">
     <button (click)="loginUser()">Login</button>
     <button (click)="registerUser()">Register</button>
