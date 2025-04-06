@@ -1,5 +1,13 @@
 @use "@angular/material" as mat;
 
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
 .register-card {
   width: 40vw;
   display: flex;
