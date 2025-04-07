@@ -8,13 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'dnd-register',
   standalone: true,
-  imports: [
-    MatCardModule,
-    FormsModule,
-    RegisterComponent,
-    MatCardModule,
-    CommonModule,
-  ],
+  imports: [MatCardModule, FormsModule, MatCardModule, CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })

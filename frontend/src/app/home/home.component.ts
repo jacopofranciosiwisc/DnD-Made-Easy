@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from '../register/register.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'dnd-home',
@@ -12,17 +13,27 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   loggedIn: boolean = false;
-  isLoggingIn: boolean = false;
-  isRegistering: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.loggedIn$.subscribe((value) => {
+      this.loggedIn = value;
+      console.log('Logged in:', this.loggedIn);
+    });
+  }
 
   registerUser() {
-    this.isRegistering = !this.isRegistering;
     this.router.navigate(['/register']);
   }
 
   loginUser() {
-    console.log('Login user logic goes here');
+    this.router.navigate(['/login']);
+  }
+
+  setLogIn(value: boolean) {
+    console.log(value);
+    this.loggedIn = value;
+    console.log('Logged in:', this.loggedIn);
   }
 }
