@@ -17,10 +17,8 @@ export class HomeComponent {
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.loggedIn$.subscribe((value) => {
-      this.loggedIn = value;
-      console.log('Logged in:', this.loggedIn);
-    });
+    this.loggedIn = this.authService.isLoggedIn;
+    console.log('Logged in:', this.loggedIn);
   }
 
   registerUser() {
@@ -31,9 +29,7 @@ export class HomeComponent {
     this.router.navigate(['/login']);
   }
 
-  setLogIn(value: boolean) {
-    console.log(value);
-    this.loggedIn = value;
-    console.log('Logged in:', this.loggedIn);
+  logoutUser() {
+    console.log('Implement logout');
   }
 }

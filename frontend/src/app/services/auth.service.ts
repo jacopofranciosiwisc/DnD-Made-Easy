@@ -40,4 +40,9 @@ export class AuthService {
   get isLoggedIn(): boolean {
     return this.loggedIn.getValue();
   }
+
+  logoutUser() {
+    this.loggedIn.next(false);
+    localStorage.setItem('loggedIn', 'false');
+  }
 }
