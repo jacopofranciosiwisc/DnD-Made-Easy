@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from '../register/register.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'dnd-home',
@@ -11,14 +12,18 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
+  private authSubscription!: Subscription;
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    this.loggedIn = this.authService.isLoggedIn;
-    console.log('Logged in:', this.loggedIn);
+    // Subscribe to the loggedIn$ observable
+    this.authSubscription = this.authService.loggedIn$.subscribe((state) => {
+      this.loggedIn = state;
+      console.log('Logged in state updated:', this.loggedIn);
+    });
   }
 
   registerUser() {
@@ -30,6 +35,14 @@ export class HomeComponent {
   }
 
   logoutUser() {
-    console.log('Implement logout');
+    this.authService.logoutUser().subscribe(() => {
+      console.log('User logged out');
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 }

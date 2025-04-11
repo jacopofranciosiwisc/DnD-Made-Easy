@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -41,8 +41,9 @@ export class AuthService {
     return this.loggedIn.getValue();
   }
 
-  logoutUser() {
+  logoutUser(): Observable<boolean> {
+    localStorage.removeItem('loggedIn');
     this.loggedIn.next(false);
-    localStorage.setItem('loggedIn', 'false');
+    return of(true);
   }
 }
