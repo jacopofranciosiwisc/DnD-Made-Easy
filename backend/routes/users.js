@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient, Prisma } = require('@prisma/client');
 const prisma = new PrismaClient();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -38,10 +38,19 @@ router.post('/register', async (req, res) => {
 
 		res.status(201).send({
 			message: 'User created successfully!',
-			data: newUser.username,
+			username: newUser.username,
 		});
 	} catch (error) {
 		console.error('Error creating user:', error);
+		if (error instanceof Prisma.PrismaClientKnownRequestError) {
+			if (error.code === 'P2002') {
+				return res.status(409).send({
+					message:
+						'There is a unique constraint violation, a new user cannot be created with this email',
+					error: error.message,
+				});
+			}
+		}
 		res.status(500).send({
 			message: 'Failed to create user',
 			error: error.message,
