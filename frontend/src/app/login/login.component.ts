@@ -18,16 +18,19 @@ export class LoginComponent {
     password: '',
   };
 
+  errorMessage: string | null = null;
+
   constructor(private router: Router, private authService: AuthService) {}
 
   loginUser() {
     this.authService.loginUser(this.credentials).subscribe({
-      next: (response) => {
-        this.router.navigate(['/home']);
-        console.log('Login successful:', response);
+      next: () => {
         this.authService.setLoggedIn(true);
+        this.router.navigate(['/home']);
       },
-      error: (error) => console.error('Error loggin in user:', error),
+      error: () => {
+        this.errorMessage = 'Invalid login...';
+      },
     });
   }
 

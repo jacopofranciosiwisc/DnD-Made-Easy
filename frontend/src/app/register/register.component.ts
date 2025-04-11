@@ -23,6 +23,10 @@ export class RegisterComponent {
 
   registerUser() {
     this.authService.registerUser(this.credentials).subscribe({
+      next: (response) => {
+        console.log('User registration successful!', response);
+        this.router.navigate(['/login']);
+      },
       error: (error) => console.error('Error registering user:', error),
     });
   }

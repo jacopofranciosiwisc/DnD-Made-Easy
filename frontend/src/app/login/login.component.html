@@ -33,6 +33,7 @@
       >
         Password is required
       </em>
+      <p class="error" *ngIf="errorMessage">Invalid login...</p>
       <button type="submit" [disabled]="signInForm.invalid">Login</button>
     </form>
   </mat-card-content>
