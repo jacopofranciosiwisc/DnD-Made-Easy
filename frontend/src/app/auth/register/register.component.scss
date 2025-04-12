@@ -1,0 +1,51 @@
+@use "@angular/material" as mat;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.register-card {
+  width: 40vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card-content {
+  width: 60%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 1rem;
+  gap: 1rem;
+}
+
+.form-container input {
+  height: 1.5rem;
+  width: 100%;
+}
+
+.form-container button {
+  margin: 0 auto;
+}
+
+.error {
+  margin: 0;
+  padding: 0;
+  color: red;
+}
+
+.back-button {
+  padding: 0.5rem 1rem;
+  margin: 2rem;
+  border-radius: 0.5rem;
+}

@@ -2,6 +2,7 @@
 
 :host {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -41,4 +42,10 @@ mat-card-content {
   margin: 0;
   padding: 0;
   color: red;
+}
+
+.back-button {
+  padding: 0.5rem 1rem;
+  margin: 2rem;
+  border-radius: 0.5rem;
 }

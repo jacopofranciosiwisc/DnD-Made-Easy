@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from '../register/register.component';
+import { RegisterComponent } from '../auth/register/register.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'dnd-home',
@@ -10,19 +12,35 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
-  isLoggingIn: boolean = false;
-  isRegistering: boolean = false;
+  private authSubscription!: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
+    // Subscribe to the loggedIn$ observable
+    this.authSubscription = this.authService.loggedIn$.subscribe((state) => {
+      this.loggedIn = state;
+      console.log('Logged in state updated:', this.loggedIn);
+    });
+  }
 
   registerUser() {
-    this.isRegistering = !this.isRegistering;
     this.router.navigate(['/register']);
   }
 
   loginUser() {
-    console.log('Login user logic goes here');
+    this.router.navigate(['/login']);
+  }
+
+  logoutUser() {
+    this.authService.logoutUser();
+  }
+
+  ngOnDestroy() {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 }

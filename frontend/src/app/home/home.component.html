@@ -7,6 +7,7 @@
   <div class="main-area" *ngIf="loggedIn">
     <button>Create Session</button>
     <button>Load Session</button>
+    <button (click)="logoutUser()">Log Out</button>
   </div>
 
   <div class="auth-area" *ngIf="!loggedIn">
