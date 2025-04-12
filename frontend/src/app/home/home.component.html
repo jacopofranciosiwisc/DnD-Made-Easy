@@ -5,8 +5,8 @@
   </div>
 
   <div class="main-area" *ngIf="loggedIn">
-    <button>Create Session</button>
-    <button>Load Session</button>
+    <button (click)="createSession()">Create Session</button>
+    <button (click)="loadSession()">Load Session</button>
     <button (click)="logoutUser()">Log Out</button>
   </div>
 
