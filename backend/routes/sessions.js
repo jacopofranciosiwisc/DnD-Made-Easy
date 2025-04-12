@@ -4,16 +4,17 @@ const authenticateToken = require('../middleware/auth'); // Import the middlewar
 
 // Session Routes
 
-/**
- * Create a combat session
- */
-router.post('/', authenticateToken, (req, res) => {
-	const { sessionName, state } = req.body;
+// Create combat session
+router.post('/create', authenticateToken, (req, res) => {
+	const { sessionName } = req.body;
+
 	// Logic to create a new combat session
-	res.status(201).send({ message: 'Combat session created successfully!' });
+	res
+		.status(201)
+		.send({ message: `Combat session: ${sessionName}, created successfully!` });
 });
 
-router.get('/', authenticateToken, (req, res) => {
+router.get('/load', authenticateToken, (req, res) => {
 	// Logic to fetch combat sessions
 	res.status(200).send({ message: 'Fetched combat sessions successfully!' });
 });

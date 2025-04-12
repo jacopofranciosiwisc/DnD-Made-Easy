@@ -1,12 +1,20 @@
 // Import required modules
 const express = require('express');
+const cookieParser = require('cookie-parser');
+
 const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
 
 const cors = require('cors');
-app.use(cors());
+app.use(cookieParser());
+app.use(
+	cors({
+		origin: 'http://localhost:4200',
+		credentials: true,
+	})
+);
 
 // Define a basic route
 app.get('/', (req, res) => {
@@ -21,8 +29,8 @@ app.listen(PORT, () => {
 
 const userRoutes = require('./routes/users');
 const characterRoutes = require('./routes/characters');
-const combatRoutes = require('./routes/combat');
+const sessionRoutes = require('./routes/sessions');
 
 app.use('/api/users', userRoutes);
 app.use('/api/characters', characterRoutes);
-app.use('/api/combat', combatRoutes);
+app.use('/api/sessions', sessionRoutes);

@@ -9,10 +9,16 @@ export class SessionService {
   constructor(private http: HttpClient) {}
 
   createSession(): Observable<any> {
-    return this.http.post('http://localhost:3000/api/', 123).pipe(
-      catchError((error) => {
-        return throwError(() => new Error('Failed to create session'));
-      })
-    );
+    return this.http
+      .post(
+        'http://localhost:3000/api/sessions/create',
+        { sessionName: 'testSession' },
+        { withCredentials: true }
+      )
+      .pipe(
+        catchError((error) => {
+          return throwError(() => new Error('Failed to create session'));
+        })
+      );
   }
 }

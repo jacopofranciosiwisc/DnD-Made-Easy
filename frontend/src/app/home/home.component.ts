@@ -4,6 +4,7 @@ import { RegisterComponent } from '../auth/register/register.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'dnd-home',
@@ -16,7 +17,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
   private authSubscription!: Subscription;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private sessionService: SessionService
+  ) {}
 
   ngOnInit() {
     // Subscribe to the loggedIn$ observable
@@ -40,6 +45,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   createSession() {
     console.log('Creating session');
+    this.sessionService.createSession().subscribe({
+      next: (message) => {
+        console.log(message);
+      },
+    });
   }
 
   loadSession() {
