@@ -13,24 +13,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Character {
-  id        Int       @id @default(autoincrement())
-  name      String
-  stats     Json
-  createdAt DateTime  @default(now())
-}
-
 model User {
-  id        Int       @id @default(autoincrement())
-  username  String
-  email     String    @unique
-  password  String
+  id         Int         @id @default(autoincrement())
+  username   String
+  email      String      @unique
+  password   String
+  isDm       Boolean     @default(false)
+  characters Character[] // Reverse relation to Character
 }
 
-model Session {
-  id        Int       @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  state     Json
+model Spell {
+  id          String    @id @default(uuid())
+  characterId String    @map("character_id")
+  character   Character @relation(fields: [characterId], references: [id])
+  name        String // Name of the spell
+  description String? // Optional description of the spell
+  level       Int // Spell level
 }
+
+//store all characters (player and npcs) in a session
+model Character {
+  id            String      @id @default(uuid())
+  sessionId     String      @map("session_id") //relation column that tracks the character to a specific session
+  session       Session     @relation(fields: [sessionId], references: [id]) //relationship between character and session tables. Lets us fetch the session a character belongs to
+  userId        Int? // Match type with User.id
+  user          User?       @relation(fields: [userId], references: [id]) //relationship between character and user tables. Lets us fetch the user associated with a character
+  name          String // Character name
+  type          String // "player" or "npc"
+  hp            Int // Current HP
+  maxHp         Int // Max HP
+  ac            Int // Armor Class
+  statusEffects Json? // Active status effects (e.g., ["prone", "stunned"])
+  websiteUrl    String? // Optional link to the character's website
+  spells        Spell[] // Relation to spells
+  turnOrders    TurnOrder[] // Reverse relation to TurnOrder
+}
+
+//track the metadata of each session. The parent table, as each other table
+//is tied to a specific session
+model Session {
+  id           String      @id @default(uuid())
+  name         String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  dmId         String
+  isActive     Boolean     @default(true)
+  roundCounter Int         @default(0) //tracks current combat round, incremented after everyone has taken a turn
+  charactes    Character[] //reverse relationship, fetching all characters associated with the sessison
+  turnOrder    TurnOrder[] //reverse relationship, fetching the initiative order for the session
+}
+
+//track the initiative order for combat
+model TurnOrder {
+  id          String    @id @default(uuid())
+  sessionId   String    @map("session_id")
+  session     Session   @relation(fields: [sessionId], references: [id])
+  characterId String    @map("character_id")
+  character   Character @relation(fields: [characterId], references: [id])
+  initiative  Int // Initiative roll for this character
+  turnIndex   Int // Position of a character in the turn order
+  isCurrent   Boolean   @default(false) // Whether this is the current turn
+}
+
+//Explanations
+//Relation column: link or pointer that connects tables. Stores a foreign key (value from another table's primary key) to establish a connection
+//Relationship column: actual connection between two tables, allowing us to navigate between tables
+//The relationship column uses the foreign key stored in the relation column to interact with other and fetch the related session from the session table (or other tables)
+
+//sessionId links a character to a session, and session lets you fetch the session details.
+//userId links a character to a user, and user lets you fetch the user details.
+//characters and turnOrder in the Session table let you fetch all characters and the turn order for a session.
