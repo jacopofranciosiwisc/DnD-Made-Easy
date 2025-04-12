@@ -1,7 +1,7 @@
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 

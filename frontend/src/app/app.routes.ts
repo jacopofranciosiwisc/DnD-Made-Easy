@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { SessionComponent } from './session/session.component'; // Import SessionComponent
 import { AuthGuard } from './services/auth-guard.service'; // Corrected import
 
