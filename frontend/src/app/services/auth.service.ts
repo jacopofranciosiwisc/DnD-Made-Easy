@@ -32,6 +32,12 @@ export class AuthService {
     );
   }
 
+  /**
+   * Updates the login condition in both the BehaviorSubject and local storage. Both are necessary because:
+   * Behavior Subject: Ensures the app can *react* to login state changes in real time
+     localStorage: Ensures login state persists even on refresh or page close
+   * @param value The boolean which to set the log in condition to
+   */
   setLoggedIn(value: boolean) {
     this.loggedIn.next(value);
     localStorage.setItem('loggedIn', value ? 'true' : 'false');
