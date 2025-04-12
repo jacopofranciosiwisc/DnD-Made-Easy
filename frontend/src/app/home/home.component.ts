@@ -38,6 +38,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.authService.logoutUser();
   }
 
+  createSession() {
+    console.log('Creating session');
+  }
+
+  loadSession() {
+    console.log('Loading session');
+  }
+
   ngOnDestroy() {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
