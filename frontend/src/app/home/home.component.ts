@@ -35,9 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   logoutUser() {
-    this.authService.logoutUser().subscribe(() => {
-      console.log('User logged out');
-    });
+    this.authService.logoutUser();
   }
 
   ngOnDestroy() {
