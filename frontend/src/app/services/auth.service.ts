@@ -25,11 +25,15 @@ export class AuthService {
   }
 
   loginUser(user: any): Observable<any> {
-    return this.http.post('http://localhost:3000/api/users/login', user).pipe(
-      catchError((error) => {
-        return throwError(() => new Error('Failed to login user'));
+    return this.http
+      .post('http://localhost:3000/api/users/login', user, {
+        withCredentials: true,
       })
-    );
+      .pipe(
+        catchError((error) => {
+          return throwError(() => new Error('Failed to login user'));
+        })
+      );
   }
 
   /**

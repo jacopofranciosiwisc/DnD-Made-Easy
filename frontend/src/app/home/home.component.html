@@ -4,9 +4,28 @@
     <h2>Combat System</h2>
   </div>
 
-  <div class="main-area" *ngIf="loggedIn">
-    <button>Create Session</button>
-    <button>Load Session</button>
+  <form
+    *ngIf="toggleCreateSession"
+    (ngSubmit)="createSession()"
+    #sessionForm="ngForm"
+  >
+    <label for="sessionName">Enter a session name</label>
+    <input
+      [(ngModel)]="sessionName"
+      type="text"
+      name="sessionName"
+      required
+      placeholder="Underworld - Boss Fight"
+    />
+    <button type="submit" [disabled]="sessionForm.invalid">
+      Begin Fighting
+    </button>
+    <button (click)="enterSessionDetails()">Cancel</button>
+  </form>
+
+  <div class="main-area" *ngIf="loggedIn && !toggleCreateSession">
+    <button (click)="enterSessionDetails()">Create Session</button>
+    <button (click)="loadSession()">Load Session</button>
     <button (click)="logoutUser()">Log Out</button>
   </div>
 

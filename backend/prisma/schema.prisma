@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id         Int         @id @default(autoincrement())
+  id         String      @id @default(uuid())
   username   String
   email      String      @unique
   password   String
@@ -36,7 +36,7 @@ model Character {
   id            String      @id @default(uuid())
   sessionId     String      @map("session_id") //relation column that tracks the character to a specific session
   session       Session     @relation(fields: [sessionId], references: [id]) //relationship between character and session tables. Lets us fetch the session a character belongs to
-  userId        Int? // Match type with User.id
+  userId        String? // Match type with User.id
   user          User?       @relation(fields: [userId], references: [id]) //relationship between character and user tables. Lets us fetch the user associated with a character
   name          String // Character name
   type          String // "player" or "npc"
@@ -59,7 +59,7 @@ model Session {
   dmId         String
   isActive     Boolean     @default(true)
   roundCounter Int         @default(0) //tracks current combat round, incremented after everyone has taken a turn
-  charactes    Character[] //reverse relationship, fetching all characters associated with the sessison
+  characters   Character[] //reverse relationship, fetching all characters associated with the sessison
   turnOrder    TurnOrder[] //reverse relationship, fetching the initiative order for the session
 }
 
