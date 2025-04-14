@@ -5,17 +5,21 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { SessionService } from '../services/session.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'dnd-home',
   standalone: true,
-  imports: [CommonModule, RegisterComponent],
+  imports: [CommonModule, RegisterComponent, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
   private authSubscription!: Subscription;
+
+  sessionName: String = '';
+  toggleCreateSession: boolean = false;
 
   constructor(
     private router: Router,
@@ -43,13 +47,24 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.authService.logoutUser();
   }
 
+  enterSessionDetails() {
+    this.toggleCreateSession = !this.toggleCreateSession;
+  }
+
   createSession() {
-    console.log('Creating session');
-    this.sessionService.createSession().subscribe({
-      next: (message) => {
-        console.log(message);
-      },
-    });
+    if (this.sessionName) {
+      console.log('Creating session');
+      this.sessionService.createSession(this.sessionName).subscribe({
+        next: (res) => {
+          const sessionId = res.id;
+          console.log(sessionId);
+          this.router.navigate([`/session/${sessionId}`]);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+    }
   }
 
   loadSession() {

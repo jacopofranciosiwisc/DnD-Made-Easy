@@ -8,11 +8,11 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class SessionService {
   constructor(private http: HttpClient) {}
 
-  createSession(): Observable<any> {
+  createSession(sessionName: String): Observable<any> {
     return this.http
       .post(
         'http://localhost:3000/api/sessions/create',
-        { sessionName: 'testSession' },
+        { sessionName: sessionName },
         { withCredentials: true }
       )
       .pipe(
