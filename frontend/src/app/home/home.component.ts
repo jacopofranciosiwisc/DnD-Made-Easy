@@ -19,7 +19,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   private authSubscription!: Subscription;
 
   sessionName: String = '';
-  toggleCreateSession: boolean = false;
+  creatingSession: boolean = false;
+  loadingSession: boolean = false;
 
   constructor(
     private router: Router,
@@ -48,7 +49,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   enterSessionDetails() {
-    this.toggleCreateSession = !this.toggleCreateSession;
+    this.creatingSession = !this.creatingSession;
+  }
+
+  goBack() {
+    if (this.creatingSession) {
+      this.creatingSession = false;
+    }
+
+    if (this.loadingSession) {
+      this.loadingSession = false;
+    }
   }
 
   createSession() {
@@ -68,6 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadSession() {
+    this.loadingSession = !this.loadingSession;
     console.log('Loading session');
   }
 
