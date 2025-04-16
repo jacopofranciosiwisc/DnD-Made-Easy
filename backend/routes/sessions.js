@@ -7,7 +7,6 @@ const prisma = new PrismaClient();
 // Session Routes
 
 // Create combat session
-//use cam's email to validate dm: cpedmunds02@gmail.com
 router.post('/create', authenticateToken, async (req, res) => {
 	const { sessionName } = req.body;
 
@@ -37,9 +36,21 @@ router.post('/create', authenticateToken, async (req, res) => {
 	}
 });
 
-router.get('/load', authenticateToken, (req, res) => {
-	// Logic to fetch combat sessions
-	res.status(200).send({ message: 'Fetched combat sessions successfully!' });
+//Load comabat sessions
+router.get('/load', authenticateToken, async (req, res) => {
+	try {
+		const sessions = await prisma.session.findMany();
+		res.status(201).send({
+			message: `${sessions.length} sessions loaded successfully`,
+			sessions: sessions,
+		});
+	} catch (error) {
+		console.error('Error fetching sessions:', error);
+		res.status(500).send({
+			message: 'Failed to load sessions',
+			error: error.message,
+		});
+	}
 });
 
 module.exports = router;

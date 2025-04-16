@@ -102,11 +102,9 @@ router.post('/login', async (req, res) => {
 
 router.use(authenticateToken);
 
-router.get('/temp', async (req, res) => {
-	console.log(`This is a temp route so auth doesn't apply to everything`);
-	return res.status(200).send({
-		message: `This is a temp route so auth doesn't apply to everything`,
-	});
+router.post('/logout', (req, res) => {
+	res.clearCookie('token', { path: '/' }); // Clear the token cookie
+	res.status(200).send({ message: 'Logged out successfully' });
 });
 
 module.exports = router;
