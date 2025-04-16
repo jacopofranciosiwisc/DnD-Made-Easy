@@ -79,8 +79,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadSession() {
-    this.loadingSession = !this.loadingSession;
+    this.loadingSession = true;
     console.log('Loading session');
+    this.sessionService.loadSessions().subscribe({
+      next: (res) => {
+        const sessions = res.sessions;
+        console.log(sessions);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 
   ngOnDestroy() {

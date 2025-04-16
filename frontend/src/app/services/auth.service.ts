@@ -51,9 +51,25 @@ export class AuthService {
     return this.loggedIn.getValue();
   }
 
-  logoutUser(): Observable<boolean> {
-    localStorage.removeItem('loggedIn');
-    this.loggedIn.next(false);
-    return of(true);
+  logoutUser(): void {
+    this.http
+      .post(
+        'http://localhost:3000/api/users/logout',
+        {},
+        { withCredentials: true }
+      )
+      .subscribe({
+        next: () => {
+          console.log('Logged out successfully');
+          // Clear the token and login state
+          document.cookie =
+            'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          localStorage.removeItem('loggedIn');
+          this.loggedIn.next(false);
+        },
+        error: (err) => {
+          console.error('Error during logout:', err);
+        },
+      });
   }
 }
