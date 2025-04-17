@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { SessionService } from '../services/session.service';
 import { FormsModule } from '@angular/forms';
+import { Session } from '../interfaces/session';
 
 @Component({
   selector: 'dnd-home',
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private sessionService: SessionService
+    protected sessionService: SessionService
   ) {}
 
   ngOnInit() {
@@ -84,12 +85,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sessionService.loadSessions().subscribe({
       next: (res) => {
         const sessions = res.sessions;
+        this.sessionService.setSessions(sessions);
         console.log(sessions);
       },
       error: (err) => {
         console.error(err);
       },
     });
+  }
+
+  selectSession(session: Session) {
+    this.sessionService.setCurrentSession(session);
+    console.log(this.sessionService.currentSession$);
   }
 
   ngOnDestroy() {

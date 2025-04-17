@@ -1,13 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { Session } from '../interfaces/session';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SessionService {
-  sessions: Session[] | null = null;
+  private sessionsSubject = new BehaviorSubject<Session[] | null>(null);
+  private currentSessionSubject = new BehaviorSubject<Session | null>(null);
+
+  sessions$ = this.sessionsSubject.asObservable();
+  currentSession$ = this.currentSessionSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -33,5 +37,17 @@ export class SessionService {
           return throwError(() => new Error('Failed to create session'));
         })
       );
+  }
+
+  setSessions(sessions: Session[]) {
+    this.sessionsSubject.next(sessions);
+  }
+
+  setCurrentSession(session: Session) {
+    this.currentSessionSubject.next(session);
+  }
+
+  getCurrentSession(): Session | null {
+    return this.currentSessionSubject.getValue();
   }
 }

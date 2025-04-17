@@ -42,10 +42,15 @@
 
   <div class="load-session-container" *ngIf="loadingSession">
     <div class="session-list-container">
-      <div class="session-card">
+      <div
+        class="session-card"
+        *ngFor="let session of sessionService.sessions$ | async"
+      >
         <p>
-          Render list here extra text loreum ipsum loreum ipsumloreum
-          ipsumloreum ipsumloreum ipsumloreum ipsumloreum
+          <strong>Name: </strong>{{ session.name }}
+          <strong>Current round:</strong> {{ session.roundCounter }}
+          <strong> Created: </strong>
+          {{ session.createdAt | date : "MMM dd, yyyy" }}
         </p>
       </div>
     </div>
