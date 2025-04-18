@@ -100,11 +100,15 @@ router.post('/login', async (req, res) => {
 	}
 });
 
-router.use(authenticateToken);
-
 router.post('/logout', (req, res) => {
 	res.clearCookie('token', { path: '/' }); // Clear the token cookie
 	res.status(200).send({ message: 'Logged out successfully' });
+});
+
+router.use(authenticateToken);
+
+router.post('/temp', (req, res) => {
+	res.status(200).send({ message: 'Get out of here!' });
 });
 
 module.exports = router;

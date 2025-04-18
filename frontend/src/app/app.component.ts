@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './auth/register/register.component';
 
 @Component({
   selector: 'dnd-root',
@@ -11,5 +10,5 @@ import { RegisterComponent } from './auth/register/register.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'DnD Made Easy';
 }
