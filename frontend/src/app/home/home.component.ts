@@ -104,4 +104,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.authSubscription.unsubscribe();
     }
   }
+
+  manageCharacters() {
+    this.router.navigate(['/characters']);
+  }
 }
