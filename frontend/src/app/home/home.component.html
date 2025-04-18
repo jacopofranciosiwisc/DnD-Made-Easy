@@ -1,11 +1,14 @@
-<div class="container">
+<div
+  class="container"
+  [ngClass]="{ 'create-and-load-container': loadingSession || creatingSession }"
+>
   <div class="headers">
     <h1>DnD Made Easy</h1>
     <h2>Combat System</h2>
   </div>
 
   <form
-    *ngIf="toggleCreateSession"
+    *ngIf="creatingSession"
     (ngSubmit)="createSession()"
     #sessionForm="ngForm"
   >
@@ -20,10 +23,13 @@
     <button type="submit" [disabled]="sessionForm.invalid">
       Begin Fighting
     </button>
-    <button (click)="enterSessionDetails()">Cancel</button>
+    <button (click)="goBack()">Back</button>
   </form>
 
-  <div class="main-area" *ngIf="loggedIn && !toggleCreateSession">
+  <div
+    class="main-area"
+    *ngIf="loggedIn && !loadingSession && !creatingSession"
+  >
     <button (click)="enterSessionDetails()">Create Session</button>
     <button (click)="loadSession()">Load Session</button>
     <button (click)="logoutUser()">Log Out</button>
@@ -32,5 +38,22 @@
   <div class="auth-area" *ngIf="!loggedIn">
     <button (click)="loginUser()">Login</button>
     <button (click)="registerUser()">Register</button>
+  </div>
+
+  <div class="load-session-container" *ngIf="loadingSession">
+    <div class="session-list-container">
+      <div
+        class="session-card"
+        *ngFor="let session of sessionService.sessions$ | async"
+      >
+        <p>
+          <strong>Name: </strong>{{ session.name }}
+          <strong>Current round:</strong> {{ session.roundCounter }}
+          <strong> Created: </strong>
+          {{ session.createdAt | date : "MMM dd, yyyy" }}
+        </p>
+      </div>
+    </div>
+    <button (click)="goBack()">Back</button>
   </div>
 </div>

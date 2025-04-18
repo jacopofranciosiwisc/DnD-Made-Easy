@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { SessionService } from '../services/session.service';
 import { FormsModule } from '@angular/forms';
+import { Session } from '../interfaces/session';
 
 @Component({
   selector: 'dnd-home',
@@ -19,12 +20,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   private authSubscription!: Subscription;
 
   sessionName: String = '';
-  toggleCreateSession: boolean = false;
+  creatingSession: boolean = false;
+  loadingSession: boolean = false;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private sessionService: SessionService
+    protected sessionService: SessionService
   ) {}
 
   ngOnInit() {
@@ -48,7 +50,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   enterSessionDetails() {
-    this.toggleCreateSession = !this.toggleCreateSession;
+    this.creatingSession = !this.creatingSession;
+  }
+
+  goBack() {
+    if (this.creatingSession) {
+      this.creatingSession = false;
+    }
+
+    if (this.loadingSession) {
+      this.loadingSession = false;
+    }
   }
 
   createSession() {
@@ -68,7 +80,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadSession() {
+    this.loadingSession = true;
     console.log('Loading session');
+    this.sessionService.loadSessions().subscribe({
+      next: (res) => {
+        const sessions = res.sessions;
+        this.sessionService.setSessions(sessions);
+        console.log(sessions);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  selectSession(session: Session) {
+    this.sessionService.setCurrentSession(session);
+    console.log(this.sessionService.currentSession$);
   }
 
   ngOnDestroy() {
