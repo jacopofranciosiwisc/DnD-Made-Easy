@@ -1,0 +1,51 @@
+.main-card {
+  padding: 1rem;
+  margin: 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 1rem;
+  height: 100vh;
+
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(#333, 0.5);
+}
+
+.card {
+  display: grid;
+  box-shadow: 5px 5px 15px rgba(#333, 0.5);
+  border-radius: 10px;
+  place-content: center;
+}
+
+.header {
+  grid-row: 1;
+  grid-column: 1 / -1;
+}
+
+.ability-scores {
+  grid-row: 2 / 4;
+  grid-column: 1 / 2;
+}
+
+.actions {
+  grid-row: 2 / 3;
+  grid-column: 2 / -1;
+}
+
+.inventory {
+  grid-row: 3 / 4;
+  grid-column: 2 / -1;
+}
+
+.skills {
+  grid-row: 4 / -1;
+  grid-column: 1 / 2;
+}
+
+.notebook {
+  grid-row: 4 / -1;
+  grid-column: 2 / -1;
+}
