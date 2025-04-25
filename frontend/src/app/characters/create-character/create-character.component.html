@@ -3,7 +3,31 @@
     <div class="profile-picture">
       <img src="assets/alba.jpg" alt="Profile Picture" />
     </div>
-    <p>HP: 100 AC: 18</p>
+    <div class="profile-text">
+      <div class="profile-card">
+        <Strong>Character Name</Strong>
+        <p>Race * Class * Age</p>
+      </div>
+      <p id="level">Level 1</p>
+    </div>
+    <div class="profile-stats">
+      <div class="profile-card">
+        <strong>Health Points</strong>
+        <p class="profile-stats-text">100</p>
+      </div>
+      <div class="profile-card">
+        <strong>Armor Class</strong>
+        <p class="profile-stats-text">18</p>
+      </div>
+      <div class="profile-card">
+        <strong>Initiative</strong>
+        <p class="profile-stats-text">2</p>
+      </div>
+    </div>
+    <div class="options">
+      <button (click)="goBack()">Go Back</button>
+      <button (click)="saveCharacter()">Save Character</button>
+    </div>
   </div>
   <div class="ability-scores card">Ability Scores</div>
   <div class="actions card">Actions</div>
