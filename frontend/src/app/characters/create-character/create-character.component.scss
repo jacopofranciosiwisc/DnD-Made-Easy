@@ -4,9 +4,11 @@
 
   display: grid;
   grid-template-columns: repeat(20, 1fr);
+  justify-self: center;
   grid-template-rows: repeat(20, 1fr);
   gap: 1rem;
   height: 200vh;
+  width: 80vw;
 
   background: burlywood;
   border-radius: 10px;
@@ -19,6 +21,7 @@
   border-radius: 10px;
   place-content: center;
   background: #fff;
+  padding: 1rem;
 }
 
 .header {
@@ -31,27 +34,31 @@
 
 .ability-scores {
   grid-row: 4 / 8;
-  grid-column: 1 / 5;
+  grid-column: 1 / 7;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .actions {
   grid-row: 4 / 9;
-  grid-column: 5 / -1;
+  grid-column: 7 / -1;
 }
 
 .inventory {
   grid-row: 9 / 15;
-  grid-column: 5 / -1;
+  grid-column: 7 / -1;
 }
 
 .skills {
   grid-row: 8 / -1;
-  grid-column: 1 / 5;
+  grid-column: 1 / 7;
 }
 
 .notebook {
   grid-row: 15 / -1;
-  grid-column: 5 / -1;
+  grid-column: 7 / -1;
 }
 
 .profile-picture {
@@ -141,4 +148,20 @@
 .profile-stats-text {
   font-size: x-large;
   margin: 0.5rem 0;
+}
+
+.ability-scores-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ability-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ability-score p {
+  margin: 0;
 }

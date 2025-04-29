@@ -29,7 +29,18 @@
       <button (click)="saveCharacter()">Save Character</button>
     </div>
   </div>
-  <div class="ability-scores card">Ability Scores</div>
+  <div class="ability-scores card">
+    <strong>Ability Scores</strong>
+    <div class="ability-scores-layout">
+      <div
+        class="ability-score"
+        *ngFor="let ability of characterStructure.abilities"
+      >
+        <p>{{ ability }}</p>
+        <input type="number" min="10" max="20" step="1" />
+      </div>
+    </div>
+  </div>
   <div class="actions card">Actions</div>
   <div class="inventory card">Inventory</div>
   <div class="skills card">
