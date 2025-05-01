@@ -1,64 +1,10 @@
-.main-card {
-  padding: 1rem;
-  margin: 1rem;
-
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  justify-self: center;
-  grid-template-rows: repeat(20, 1fr);
-  gap: 1rem;
-  height: 200vh;
-  width: 80vw;
-
-  background: burlywood;
-  border-radius: 10px;
-  box-shadow: 5px 5px 15px rgba(#333, 0.5);
-}
-
-.card {
-  display: grid;
-  box-shadow: 5px 5px 15px rgba(#333, 0.5);
-  border-radius: 10px;
-  place-content: center;
-  background: #fff;
-  padding: 1rem;
-}
-
-.header {
-  grid-row: 1 / 4;
-  grid-column: 1 / -1;
+.profile {
   display: grid;
   grid-template-columns: 2fr 3fr 5fr;
   grid-template-rows: 1fr 1fr;
-}
-
-.ability-scores {
-  grid-row: 4 / 8;
-  grid-column: 1 / 7;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.actions {
-  grid-row: 4 / 9;
-  grid-column: 7 / -1;
-}
-
-.inventory {
-  grid-row: 9 / 15;
-  grid-column: 7 / -1;
-}
-
-.skills {
-  grid-row: 8 / -1;
-  grid-column: 1 / 7;
-}
-
-.notebook {
-  grid-row: 15 / -1;
-  grid-column: 7 / -1;
+  grid-row: 1 / 4;
+  grid-column: 1 / -1;
+  height: 100%;
 }
 
 .profile-picture {
@@ -68,7 +14,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
-  // margin: 1rem 1rem 1rem 0;
   margin: 1rem;
 
   grid-row: 1 / -1;
@@ -148,20 +93,4 @@
 .profile-stats-text {
   font-size: x-large;
   margin: 0.5rem 0;
-}
-
-.ability-scores-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.ability-score {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.ability-score p {
-  margin: 0;
 }

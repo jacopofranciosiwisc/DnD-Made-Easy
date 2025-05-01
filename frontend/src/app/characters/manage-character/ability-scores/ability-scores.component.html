@@ -1,0 +1,10 @@
+<div class="ability-scores">
+  <strong>Ability Scores</strong>
+  <div class="ability-score" *ngFor="let ability of abilityScores">
+    <p>{{ ability }}</p>
+    <input type="number" min="10" max="20" placeholder="10" step="1" />
+    <div class="ability-score-modifier">
+      <p>+{{ 0 }}</p>
+    </div>
+  </div>
+</div>

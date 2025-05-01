@@ -17,11 +17,10 @@ export class CharactersComponent {
 
   createCharacter() {
     console.log('Creating character');
-    this.router.navigate(['create-character']);
+    this.router.navigate(['manage-character']);
   }
 
   goBack() {
     this.router.navigate(['/home']);
   }
 }
-//

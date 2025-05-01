@@ -1,0 +1,15 @@
+.skills {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.skills-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.skill p {
+  margin: 0;
+}

@@ -5,8 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SessionComponent } from './session/session.component';
 import { AuthGuard } from './services/auth-guard.service'; // Corrected import
 import { CharactersComponent } from './characters/characters.component';
-import { CreateCharacterComponent } from './characters/create-character/create-character.component';
-
+import { ManageCharacterComponent } from './characters/manage-character/manage-character.component'; // Corrected import
 export const routes: Routes = [
   {
     path: '',
@@ -23,8 +22,8 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'create-character',
-    component: CreateCharacterComponent,
+    path: 'manage-character',
+    component: ManageCharacterComponent,
     canActivate: [AuthGuard],
   },
   {

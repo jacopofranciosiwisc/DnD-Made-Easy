@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateCharacterComponent } from './create-character.component';
+import { AbilityScoresComponent } from './ability-scores.component';
 
-describe('CreateCharacterComponent', () => {
-  let component: CreateCharacterComponent;
-  let fixture: ComponentFixture<CreateCharacterComponent>;
+describe('AbilityScoresComponent', () => {
+  let component: AbilityScoresComponent;
+  let fixture: ComponentFixture<AbilityScoresComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateCharacterComponent]
+      imports: [AbilityScoresComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CreateCharacterComponent);
+    fixture = TestBed.createComponent(AbilityScoresComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

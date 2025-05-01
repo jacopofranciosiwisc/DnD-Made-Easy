@@ -1,0 +1,26 @@
+.ability-scores {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ability-score {
+  display: flex;
+  justify-items: start;
+  justify-content: space-between;
+}
+
+.ability-score input {
+  width: 2rem;
+}
+
+.ability-score p {
+  margin: 0;
+}
+
+.ability-score-modifier {
+  background-color: gray;
+  border-radius: 10%;
+  padding: 0.2rem;
+}
