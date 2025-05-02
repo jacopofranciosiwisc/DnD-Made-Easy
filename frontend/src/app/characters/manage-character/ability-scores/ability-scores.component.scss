@@ -9,6 +9,7 @@
   display: flex;
   justify-items: start;
   justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .ability-score input {
@@ -17,6 +18,7 @@
 
 .ability-score p {
   margin: 0;
+  margin-right: auto;
 }
 
 .ability-score-modifier {
