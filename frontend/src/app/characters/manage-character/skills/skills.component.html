@@ -1,9 +1,9 @@
 <div class="skills">
   <strong>Skills</strong>
-  <div class="skills-layout">
-    <div class="skill" *ngFor="let skill of skills">
-      <p>{{ skill }}</p>
-      <input type="number" min="0" max="20" placeholder="0" step="1" />
+  <div class="skill" *ngFor="let skill of skills">
+    <p>{{ skill }}</p>
+    <div class="skill-modifier">
+      <p>+ {{ 0 }}</p>
     </div>
   </div>
 </div>
