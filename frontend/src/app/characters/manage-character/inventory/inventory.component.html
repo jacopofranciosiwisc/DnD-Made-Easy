@@ -1,4 +1,67 @@
 <div class="inventory">
-  <strong>Inventory</strong>
-  <p>Inventory content goes here.</p>
+  <div class="header">
+    <strong>Inventory</strong>
+    <button (click)="openAddItemModal()">+</button>
+  </div>
+
+  <div class="inventory-item">
+    <p>Gold</p>
+    <p></p>
+    <p></p>
+    <input
+      id="gold"
+      type="number"
+      min="0"
+      max="10000"
+      placeholder="0"
+      name="numGold"
+    />
+  </div>
+
+  <div class="inventory-item" *ngFor="let item of items">
+    <p>{{ item.name }}</p>
+    <button (click)="openDescriptionModal(item)">Description</button>
+    <input type="number" min="1" [(ngModel)]="item.quantity" name="quantity" />
+    <button (click)="removeItem(item)">-</button>
+  </div>
+
+  <div class="modal" *ngIf="isAddItemModalOpen">
+    <div class="modal-content">
+      <h3>Add Item</h3>
+      <form>
+        <label for="itemName">Name:</label>
+        <input
+          id="itemName"
+          type="text"
+          [(ngModel)]="newItem.name"
+          name="itemName"
+        />
+
+        <label for="itemDescription">Description:</label>
+        <textarea
+          id="itemDescription"
+          [(ngModel)]="newItem.description"
+          name="itemDescription"
+        ></textarea>
+
+        <div class="modal-actions">
+          <button type="button" (click)="addItem()">Add</button>
+          <button type="button" (click)="closeAddItemModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="isDescriptionModalOpen">
+    <div class="modal-content">
+      <h3>{{ selectedItem?.name }}</h3>
+      <textarea
+        [(ngModel)]="selectedItem.description"
+        name="editDescription"
+      ></textarea>
+      <div class="modal-actions">
+        <button type="button" (click)="closeDescriptionModal()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
