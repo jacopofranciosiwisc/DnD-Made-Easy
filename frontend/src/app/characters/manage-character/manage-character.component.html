@@ -1,6 +1,9 @@
 <div class="main-card">
   <dnd-profile class="profile"></dnd-profile>
-  <dnd-ability-scores class="ability-scores card"></dnd-ability-scores>
+  <dnd-ability-scores
+    class="ability-scores card"
+    [abilities]="defaultCharacter.abilities"
+  ></dnd-ability-scores>
   <dnd-actions class="actions card"></dnd-actions>
   <dnd-inventory class="inventory card"></dnd-inventory>
   <dnd-skills class="skills card"></dnd-skills>

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 interface CharacterSkillsData {
-  skills: string[];
+  skills_old: string[];
 }
 
 @Component({
@@ -23,7 +23,7 @@ export class SkillsComponent {
       .get<CharacterSkillsData>('assets/character.json')
       .subscribe((data) => {
         console.log(data);
-        this.skills = data.skills;
+        this.skills = data.skills_old;
       });
   }
 }

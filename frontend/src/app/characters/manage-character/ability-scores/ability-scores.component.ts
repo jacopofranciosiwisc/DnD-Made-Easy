@@ -1,10 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
-interface CharacterAbilityScoresData {
-  abilities: string[];
-}
 
 @Component({
   selector: 'dnd-ability-scores',
@@ -14,16 +10,7 @@ interface CharacterAbilityScoresData {
   styleUrl: './ability-scores.component.scss',
 })
 export class AbilityScoresComponent {
-  abilityScores: string[] = [];
+  @Input() abilities: { [key: string]: number } = {};
 
   constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.http
-      .get<CharacterAbilityScoresData>('assets/character.json')
-      .subscribe((data) => {
-        console.log(data);
-        this.abilityScores = data.abilities;
-      });
-  }
 }
