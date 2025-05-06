@@ -12,5 +12,5 @@ import { HttpClient } from '@angular/common/http';
 export class AbilityScoresComponent {
   @Input() abilities: { [key: string]: number } = {};
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 }

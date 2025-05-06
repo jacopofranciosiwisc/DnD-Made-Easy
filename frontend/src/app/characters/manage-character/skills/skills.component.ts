@@ -1,10 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-
-interface CharacterSkillsData {
-  skills_old: string[];
-}
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'dnd-skills',
@@ -14,16 +10,7 @@ interface CharacterSkillsData {
   styleUrl: './skills.component.scss',
 })
 export class SkillsComponent {
-  skills: string[] = [];
+  @Input() skills: { [key: string]: number } = {};
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.http
-      .get<CharacterSkillsData>('assets/character.json')
-      .subscribe((data) => {
-        console.log(data);
-        this.skills = data.skills_old;
-      });
-  }
+  constructor() {}
 }

@@ -1,9 +1,9 @@
 <div class="skills">
   <strong>Skills</strong>
-  <div class="skill" *ngFor="let skill of skills">
-    <p>{{ skill }}</p>
+  <div class="skill" *ngFor="let skill of skills | keyvalue">
+    <p>{{ skill.key }}</p>
     <div class="skill-modifier">
-      <p>+ {{ 0 }}</p>
+      <p>+ {{ skill.value }}</p>
     </div>
   </div>
 </div>
