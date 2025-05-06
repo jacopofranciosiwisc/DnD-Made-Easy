@@ -1,5 +1,70 @@
-<div class="main-card">
-  <dnd-profile class="profile"></dnd-profile>
+<div *ngIf="showProfileModal" class="profile-creation">
+  <div class="modal-header">
+    <img
+      src="assets/tavern-owner.jpg"
+      alt="Tavern Owner"
+      class="tavern-owner-image"
+    />
+    <h2>Welcome, Traveler!</h2>
+    <p>
+      "Ah, a brave soul enters my tavern. Tell me your story and let destiny be
+      written!"
+    </p>
+  </div>
+  <form (ngSubmit)="saveProfile()" #profileForm="ngForm">
+    <label>Name:</label>
+    <input [(ngModel)]="profile.name" name="name" type="text" required />
+
+    <label>Race:</label>
+    <input [(ngModel)]="profile.race" name="race" type="text" required />
+
+    <label>Class:</label>
+    <input [(ngModel)]="profile.class" name="class" type="text" required />
+
+    <label>Age:</label>
+    <input [(ngModel)]="profile.age" name="age" type="text" required />
+
+    <label>Level:</label>
+    <input
+      [(ngModel)]="profile.level"
+      name="level"
+      type="number"
+      min="1"
+      required
+    />
+
+    <label>Health Points:</label>
+    <input [(ngModel)]="profile.hp" name="hp" type="number" min="1" required />
+
+    <label>Armor Class:</label>
+    <input [(ngModel)]="profile.ac" name="ac" type="number" min="1" required />
+
+    <label>Initiative:</label>
+    <input
+      [(ngModel)]="profile.initiative"
+      name="initiative"
+      type="number"
+      min="1"
+      required
+    />
+
+    <label>Profile Picture URL:</label>
+    <input
+      [(ngModel)]="profile.profilePicture"
+      name="profilePicture"
+      type="text"
+      required
+    />
+
+    <button type="submit" [disabled]="profileForm.invalid">
+      Create Profile
+    </button>
+  </form>
+</div>
+
+<div class="main-card" *ngIf="!showProfileModal">
+  <dnd-profile class="profile" [profile]="profile"></dnd-profile>
+  <button class="edit-profile" (click)="editProfile()">Edit Profile</button>
   <dnd-ability-scores
     class="ability-scores card"
     [abilities]="defaultCharacter.abilities"

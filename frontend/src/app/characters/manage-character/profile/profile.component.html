@@ -4,23 +4,23 @@
   </div>
   <div class="profile-text">
     <div class="profile-card">
-      <strong>Character Name</strong>
-      <p>Race * Class * Age</p>
+      <strong>{{ profile.name }}</strong>
+      <p>{{ profile.race }} * {{ profile.class }} * {{ profile.age }}</p>
     </div>
-    <p id="level">Level 1</p>
+    <p id="level">Level {{ profile.level }}</p>
   </div>
   <div class="profile-stats">
     <div class="profile-card">
       <strong>Health Points</strong>
-      <p class="profile-stats-text">100</p>
+      <p class="profile-stats-text">{{ profile.hp }}</p>
     </div>
     <div class="profile-card">
       <strong>Armor Class</strong>
-      <p class="profile-stats-text">18</p>
+      <p class="profile-stats-text">{{ profile.ac }}</p>
     </div>
     <div class="profile-card">
       <strong>Initiative</strong>
-      <p class="profile-stats-text">2</p>
+      <p class="profile-stats-text">{{ profile.initiative }}</p>
     </div>
   </div>
   <div class="options">
