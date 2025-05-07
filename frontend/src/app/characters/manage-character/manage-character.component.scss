@@ -65,6 +65,7 @@
 
 .profile-modal {
   background-color: #f5f5dc; // parchment-like background
+
   padding: 2rem;
   border: 3px solid #5d3a00;
   border-radius: 10px;
@@ -77,7 +78,7 @@
   margin-bottom: 1rem;
 }
 
-.profile-modal .tavern-owner-image {
+.profile-modal .tavern-image {
   width: 100%;
   max-height: 150px;
   object-fit: cover;
@@ -119,7 +120,7 @@
   margin-bottom: 1rem;
 }
 
-.tavern-owner-image {
+.tavern-image {
   width: 100%;
   max-height: 150px;
   object-fit: cover;

@@ -1,33 +1,4 @@
 {
-  "abilities_old": [
-    "Strength",
-    "Dexterity",
-    "Constitution",
-    "Intelligence",
-    "Wisdom",
-    "Charisma"
-  ],
-
-  "skills_old": [
-    "Acrobatics",
-    "Animal Handling",
-    "Arcana",
-    "Athletics",
-    "Deception",
-    "History",
-    "Insight",
-    "Intimidation",
-    "Investigation",
-    "Medicine",
-    "Nature",
-    "Perception",
-    "Performance",
-    "Persuasion",
-    "Religion",
-    "Sleight of Hand",
-    "Stealth",
-    "Survival"
-  ],
   "profile": {
     "name": "",
     "race": "",
@@ -38,12 +9,30 @@
     "initiative": 1
   },
   "abilities": {
-    "Strength": 10,
-    "Dexterity": 10,
-    "Constitution": 10,
-    "Intelligence": 10,
-    "Wisdom": 10,
-    "Charisma": 10
+    "Strength": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Dexterity": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Constitution": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Intelligence": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Wisdom": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Charisma": {
+      "score": 10,
+      "modifier": 0
+    }
   },
   "skills": {
     "Acrobatics": 0,

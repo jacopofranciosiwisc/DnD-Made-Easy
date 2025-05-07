@@ -49,7 +49,7 @@ export class ManageCharacterComponent implements OnInit {
     race: '',
     class: '',
     age: '',
-    level: 1,
+    level: 0,
     hp: 1,
     ac: 1,
     initiative: 1,
@@ -75,13 +75,35 @@ export class ManageCharacterComponent implements OnInit {
     });
   }
 
-  saveProfile() {
-    this.defaultCharacter.profile = { ...this.profile };
+  updateCharacter(data: any, key: string) {
+    console.log('saving character with new data: ', data);
+    this.modifiedCharacter = { ...(this.modifiedCharacter[key] = data) };
+    console.log(this.modifiedCharacter);
+  }
+
+  saveCharacter() {
+    console.log('API call to save character');
+  }
+
+  updateProfile() {
+    this.modifiedCharacter.profile = { ...this.profile };
     this.showProfileModal = false;
   }
 
   editProfile() {
     // Show modal again for editing profile
     this.showProfileModal = true;
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.profile.profilePicture = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }

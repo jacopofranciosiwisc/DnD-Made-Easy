@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,18 +10,22 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   @Input() profile: any = {};
+  @Output() edit = new EventEmitter();
+  @Output() saveCharacter = new EventEmitter();
 
-  ngOnInit(): void {
-    console.log(this.profile);
-  }
+  ngOnInit(): void {}
 
   constructor(private router: Router) {}
 
-  goBack() {
-    this.router.navigate(['characters']);
+  editProfile() {
+    this.edit.emit();
   }
 
-  saveCharacter() {
-    console.log('To implement');
+  handleSaveCharacter() {
+    this.saveCharacter.emit();
+  }
+
+  goBack() {
+    this.router.navigate(['characters']);
   }
 }
