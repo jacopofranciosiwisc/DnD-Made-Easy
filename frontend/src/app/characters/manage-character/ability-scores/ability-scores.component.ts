@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,7 +18,7 @@ import { CommonModule } from '@angular/common';
 export class AbilityScoresComponent {
   @Input() abilities: { [key: string]: { score: number; modifier: number } } =
     {};
-  @Output() save = new EventEmitter();
+  @Output() update = new EventEmitter();
 
   constructor() {}
 
@@ -20,7 +27,7 @@ export class AbilityScoresComponent {
       score: parseInt(event.target.value),
       modifier: Math.floor((parseInt(event.target.value) - 10) / 2),
     };
-    this.save.emit(this.abilities);
+    this.update.emit(this.abilities);
   }
 
   displayModifier(score: number) {

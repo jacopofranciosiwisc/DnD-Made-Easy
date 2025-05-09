@@ -12,14 +12,16 @@ import { FormsModule } from '@angular/forms';
 export class ActionsComponent {
   actions: any[] = [];
   isModalOpen = false;
+  // Damage modal state for showing damage dice details
+  damageModalOpen = false;
+  damageModalActionIndex: number | null = null;
 
   newAction = {
     Name: '',
     DmgType: '',
     Effects: '',
     Proficiency: false,
-    NumDice: 1,
-    DieType: 4,
+    damageDies: [{ numDice: 1, diceType: 4 }],
   };
 
   dmgTypes = [
@@ -53,30 +55,27 @@ export class ActionsComponent {
 
   openModal() {
     this.isModalOpen = true;
+    // Reset new action properties
     this.newAction = {
       Name: '',
       DmgType: this.dmgTypes[0],
       Effects: this.effects[0],
       Proficiency: false,
-      NumDice: 1,
-      DieType: 4,
+      damageDies: [{ numDice: 1, diceType: 4 }],
     };
-    console.log(this.newAction);
   }
 
   closeModal() {
     this.isModalOpen = false;
   }
 
+  addDamageDie() {
+    this.newAction.damageDies.push({ numDice: 1, diceType: 4 });
+  }
+
   createAction() {
-    if (
-      this.newAction.Name &&
-      this.newAction.DmgType &&
-      this.newAction.NumDice &&
-      this.newAction.DieType
-    ) {
-      const dmg = `${this.newAction.NumDice}d${this.newAction.DieType}`;
-      this.actions.push({ ...this.newAction, Dmg: dmg });
+    if (this.newAction.Name) {
+      this.actions.push({ ...this.newAction });
       this.closeModal();
     } else {
       alert('Please fill out all required fields.');
@@ -85,5 +84,16 @@ export class ActionsComponent {
 
   removeAction(action: any) {
     this.actions = this.actions.filter((a) => a !== action);
+  }
+
+  // Open a damage modal showing all combos for a given action index
+  openDamageModal(index: number): void {
+    this.damageModalActionIndex = index;
+    this.damageModalOpen = true;
+  }
+
+  closeDamageModal(): void {
+    this.damageModalOpen = false;
+    this.damageModalActionIndex = null;
   }
 }

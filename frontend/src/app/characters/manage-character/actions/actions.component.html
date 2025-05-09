@@ -11,12 +11,22 @@
     <p>Dmg</p>
   </div>
   <hr />
-  <div class="action" *ngFor="let action of actions">
+  <div class="action" *ngFor="let action of actions; let index = index">
     <p>{{ action.Name }}</p>
     <p>{{ action.DmgType }}</p>
     <p>{{ action.Effects }}</p>
     <p>{{ action.Proficiency }}</p>
-    <p>{{ action.Dmg }}</p>
+    <p>
+      <ng-container *ngIf="action.damageDies.length === 1">
+        {{ action.damageDies[0].numDice }}d{{ action.damageDies[0].diceType }}
+      </ng-container>
+      <ng-container *ngIf="action.damageDies.length > 1">
+        {{ action.damageDies[0].numDice }}d{{ action.damageDies[0].diceType }}
+        <strong style="cursor: pointer" (click)="openDamageModal(index)">
+          + {{ action.damageDies.length - 1 }} more
+        </strong>
+      </ng-container>
+    </p>
     <button (click)="removeAction(action)">-</button>
   </div>
 
@@ -50,27 +60,67 @@
           <option [value]="true">True</option>
           <option [value]="false">False</option>
         </select>
-        <strong>Damage:</strong>
-        <label for="numDice"># of Dice:</label>
-        <input
-          id="numDice"
-          type="number"
-          min="1"
-          max="10"
-          [(ngModel)]="newAction.NumDice"
-          name="numDice"
-        />
 
-        <label for="dieType">Die Type:</label>
-        <select id="dieType" [(ngModel)]="newAction.DieType" name="dieType">
-          <option *ngFor="let die of dieTypes" [value]="die">d{{ die }}</option>
-        </select>
+        <strong>Damage:</strong>
+        <div
+          class="modal-damage-dice-list"
+          *ngFor="let damageDie of newAction.damageDies; let i = index"
+        >
+          <label for="numDice{{ i }}"># of Dice:</label>
+          <input
+            id="numDice{{ i }}"
+            type="number"
+            min="1"
+            max="10"
+            [(ngModel)]="newAction.damageDies[i].numDice"
+            name="numDice{{ i }}"
+          />
+
+          <label for="dieType{{ i }}">Die Type:</label>
+          <select
+            id="dieType{{ i }}"
+            [(ngModel)]="newAction.damageDies[i].diceType"
+            name="dieType{{ i }}"
+          >
+            <option *ngFor="let die of dieTypes" [value]="die">
+              d{{ die }}
+            </option>
+          </select>
+        </div>
+        <button type="button" (click)="addDamageDie()">
+          Add Another Damage Die Combo
+        </button>
 
         <div class="modal-actions">
           <button type="button" (click)="createAction()">Create</button>
           <button type="button" (click)="closeModal()">Cancel</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Damage Die Modal for showing all combos -->
+  <div class="modal" *ngIf="damageModalOpen">
+    <div class="modal-content">
+      <h3>Damage Details</h3>
+      <div *ngIf="damageModalActionIndex !== null">
+        <div
+          class="damage-dice-item"
+          *ngFor="
+            let damageDie of actions[damageModalActionIndex].damageDies;
+            let j = index
+          "
+        >
+          <p>
+            Damage die {{ j + 1 }}: {{ damageDie.numDice }}d{{
+              damageDie.diceType
+            }}
+          </p>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" (click)="closeDamageModal()">Close</button>
+      </div>
     </div>
   </div>
 </div>

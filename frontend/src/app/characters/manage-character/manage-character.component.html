@@ -69,7 +69,7 @@
   <dnd-ability-scores
     class="ability-scores card"
     [abilities]="defaultCharacter.abilities"
-    (save)="updateCharacter($event, 'abilities')"
+    (update)="updateCharacter($event, 'abilities')"
   ></dnd-ability-scores>
   <dnd-actions class="actions card"></dnd-actions>
   <dnd-inventory class="inventory card"></dnd-inventory>
