@@ -1,4 +1,4 @@
-<!-- <div *ngIf="showProfileModal" class="profile-creation">
+<div *ngIf="showProfileModal" class="profile-creation">
   <div class="modal-header">
     <img src="assets/tavern.jpg" alt="Tavern" class="tavern-image" />
     <h2>Welcome, Traveler!</h2>
@@ -56,10 +56,9 @@
       Create Profile
     </button>
   </form>
-</div> -->
+</div>
 
-<!-- <div class="main-card" *ngIf="!showProfileModal"> -->
-<div class="main-card">
+<div class="main-card" *ngIf="!showProfileModal">
   <dnd-profile
     class="profile"
     [profile]="profile"
@@ -83,5 +82,8 @@
     class="skills card"
     [skills]="defaultCharacter.skills"
   ></dnd-skills>
-  <dnd-notebook class="notebook card"></dnd-notebook>
+  <dnd-notebook
+    class="notebook card"
+    (update)="updateCharacter($event, 'notebook')"
+  ></dnd-notebook>
 </div>

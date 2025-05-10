@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,11 +10,17 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './notebook.component.scss',
 })
 export class NotebookComponent {
+  @Output() update = new EventEmitter();
   activeTab: string = 'notes';
   notes: string = '';
   backstory: string = '';
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
+  }
+
+  updateNotebook(event: any, tab: any) {
+    tab = event.target.value;
+    this.update.emit({ notes: this.notes, backstory: this.backstory });
   }
 }
