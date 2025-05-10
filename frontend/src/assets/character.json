@@ -54,10 +54,13 @@
     "Stealth": 0,
     "Survival": 0
   },
-  "actions": {},
-  "inventory": {
-    "gold": 0
-  },
+  "actions": [],
+  "inventory": [
+    {
+      "gold": 0,
+      "items": []
+    }
+  ],
   "notebook": {
     "notes": "",
     "backstory": ""

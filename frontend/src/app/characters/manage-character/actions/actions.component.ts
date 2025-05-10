@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,9 +10,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './actions.component.scss',
 })
 export class ActionsComponent {
+  @Output() update = new EventEmitter();
   actions: any[] = [];
+
   isModalOpen = false;
-  // Damage modal state for showing damage dice details
   damageModalOpen = false;
   damageModalActionIndex: number | null = null;
 
@@ -53,9 +54,12 @@ export class ActionsComponent {
 
   dieTypes = [4, 6, 8, 10, 12, 20];
 
+  updateCharacter() {
+    this.update.emit(this.actions);
+  }
+
   openModal() {
     this.isModalOpen = true;
-    // Reset new action properties
     this.newAction = {
       Name: '',
       DmgType: this.dmgTypes[0],
@@ -77,6 +81,7 @@ export class ActionsComponent {
     if (this.newAction.Name) {
       this.actions.push({ ...this.newAction });
       this.closeModal();
+      this.updateCharacter();
     } else {
       alert('Please fill out all required fields.');
     }
@@ -84,9 +89,9 @@ export class ActionsComponent {
 
   removeAction(action: any) {
     this.actions = this.actions.filter((a) => a !== action);
+    this.updateCharacter();
   }
 
-  // Open a damage modal showing all combos for a given action index
   openDamageModal(index: number): void {
     this.damageModalActionIndex = index;
     this.damageModalOpen = true;

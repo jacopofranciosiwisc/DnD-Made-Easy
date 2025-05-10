@@ -76,9 +76,8 @@ export class ManageCharacterComponent implements OnInit {
   }
 
   updateCharacter(data: any, key: string) {
-    console.log('saving character with new data: ', data);
-    this.modifiedCharacter = { ...(this.modifiedCharacter[key] = data) };
-    console.log('Modified Character: ', this.modifiedCharacter);
+    this.modifiedCharacter[key] = data;
+    console.log('Character after the update: ', this.modifiedCharacter);
   }
 
   saveCharacter() {

@@ -71,8 +71,14 @@
     [abilities]="defaultCharacter.abilities"
     (update)="updateCharacter($event, 'abilities')"
   ></dnd-ability-scores>
-  <dnd-actions class="actions card"></dnd-actions>
-  <dnd-inventory class="inventory card"></dnd-inventory>
+  <dnd-actions
+    class="actions card"
+    (update)="updateCharacter($event, 'actions')"
+  ></dnd-actions>
+  <dnd-inventory
+    class="inventory card"
+    (update)="updateCharacter($event, 'inventory')"
+  ></dnd-inventory>
   <dnd-skills
     class="skills card"
     [skills]="defaultCharacter.skills"

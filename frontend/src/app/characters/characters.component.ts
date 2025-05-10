@@ -16,7 +16,6 @@ export class CharactersComponent {
   }
 
   createCharacter() {
-    console.log('Creating character');
     this.router.navigate(['manage-character']);
   }
 
