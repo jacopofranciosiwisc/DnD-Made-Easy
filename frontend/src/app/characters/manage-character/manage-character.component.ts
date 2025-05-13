@@ -8,6 +8,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { NotebookComponent } from './notebook/notebook.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SavingThrowsComponent } from './saving-throws/saving-throws.component';
 
 interface Profile {
   name: string;
@@ -27,6 +28,7 @@ interface Profile {
   imports: [
     ProfileComponent,
     AbilityScoresComponent,
+    SavingThrowsComponent,
     SkillsComponent,
     ActionsComponent,
     InventoryComponent,

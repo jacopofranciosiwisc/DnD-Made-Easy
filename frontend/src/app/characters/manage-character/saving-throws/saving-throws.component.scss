@@ -1,21 +1,15 @@
-.skills {
+.saving-throws {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   gap: 1rem;
 }
 
-.skill {
+.saving-throw {
   display: flex;
   justify-content: space-between;
 }
 
-.skill p {
+.saving-throw p {
   margin: 0;
-}
-
-.skill-modifier {
-  background-color: lightgray;
-  padding: 0.2rem;
-  border-radius: 10%;
 }

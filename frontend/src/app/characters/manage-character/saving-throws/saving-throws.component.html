@@ -1,0 +1,7 @@
+<div class="saving-throws">
+  <strong>Saving Throws</strong>
+  <div class="saving-throw" *ngFor="let throw of savingThrows | keyvalue">
+    <p>{{ throw.key }}</p>
+    <p>+ {{ throw.value }}</p>
+  </div>
+</div>

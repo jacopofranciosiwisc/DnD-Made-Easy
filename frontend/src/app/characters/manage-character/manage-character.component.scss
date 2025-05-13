@@ -41,7 +41,12 @@
 }
 
 .skills {
-  grid-row: 8 / -1;
+  grid-row: 12 / -1;
+  grid-column: 1 / 7;
+}
+
+.saving-throws {
+  grid-row: 8 / 12;
   grid-column: 1 / 7;
 }
 
@@ -88,15 +93,24 @@
 
 .profile-creation form {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   row-gap: 1rem;
   column-gap: 1rem;
 }
 
 .profile-creation form input {
-  min-width: 0;
+  min-width: 1rem;
 }
 
 .profile-creation label {
   font-weight: bold;
+}
+
+.profile-creation form :last-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  font-size: large;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin-top: 1rem;
 }
