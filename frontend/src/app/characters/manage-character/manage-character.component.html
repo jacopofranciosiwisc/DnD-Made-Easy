@@ -75,6 +75,7 @@
   <dnd-saving-throws
     class="saving-throws card"
     [savingThrows]="defaultCharacter.savingThrows"
+    (update)="updateCharacter($event, 'savingThrows')"
   ></dnd-saving-throws>
 
   <dnd-actions

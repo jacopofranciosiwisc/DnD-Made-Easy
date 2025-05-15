@@ -35,12 +35,12 @@
     }
   },
   "savingThrows": {
-    "Strength": 0,
-    "Dexterity": 0,
-    "Constitution": 0,
-    "Intelligence": 0,
-    "Wisdom": 0,
-    "Charisma": 0
+    "Strength": { "num": 0, "proficiency": false },
+    "Dexterity": { "num": 0, "proficiency": false },
+    "Constitution": { "num": 0, "proficiency": false },
+    "Intelligence": { "num": 0, "proficiency": false },
+    "Wisdom": { "num": 0, "proficiency": false },
+    "Charisma": { "num": 0, "proficiency": false }
   },
   "skills": {
     "Acrobatics": 0,

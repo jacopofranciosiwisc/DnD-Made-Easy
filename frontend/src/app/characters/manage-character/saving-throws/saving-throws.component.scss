@@ -1,3 +1,23 @@
+button {
+  border: 4px ridge black;
+  border-radius: 1rem;
+  align-self: flex-start;
+}
+
+p,
+h3 {
+  margin: 0;
+}
+
+input {
+  width: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .saving-throws {
   display: flex;
   flex-direction: column;
@@ -10,6 +30,48 @@
   justify-content: space-between;
 }
 
-.saving-throw p {
-  margin: 0;
+.saving-throw :last-child {
+  padding: 0.2rem;
+  border-radius: 10%;
+}
+
+.proficient {
+  background-color: gold;
+  border: ridge gold;
+  font-weight: bold;
+}
+
+.not-proficient {
+  border: ridge grey;
+  background-color: lightgray;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.modal-content > div {
+  display: flex;
+  justify-content: space-between;
 }
