@@ -1,4 +1,4 @@
-<!-- <div *ngIf="showProfileModal" class="profile-creation">
+<div *ngIf="showProfileModal" class="profile-creation">
   <div class="modal-header">
     <img src="assets/tavern.jpg" alt="Tavern" class="tavern-image" />
     <h2>Welcome, Traveler!</h2>
@@ -51,20 +51,21 @@
       accept="image/*"
       required
     />
-
-    <button type="submit" [disabled]="profileForm.invalid">
-      Create Profile
-    </button>
+    <div class="buttons">
+      <button type="submit" [disabled]="profileForm.invalid">
+        Create Profile
+      </button>
+      <button (click)="goBack()">Go Back</button>
+    </div>
   </form>
-</div> -->
+</div>
 
-<!-- <div class="main-card" *ngIf="!showProfileModal"> -->
-<div class="main-card">
+<div class="main-card" *ngIf="!showProfileModal">
   <dnd-profile
     class="profile"
     [profile]="profile"
     (edit)="editProfile()"
-    (saveCharacter)="saveCharacter()"
+    (createCharacter)="createCharacter()"
   ></dnd-profile>
   <dnd-ability-scores
     class="ability-scores card"
@@ -89,6 +90,7 @@
   <dnd-skills
     class="skills card"
     [skills]="defaultCharacter.skills"
+    (update)="updateCharacter($event, 'skills')"
   ></dnd-skills>
   <dnd-notebook
     class="notebook card"

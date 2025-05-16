@@ -7,11 +7,10 @@ import { Injectable } from '@angular/core';
 export class CharacterService {
   constructor(private http: HttpClient) {}
 
-  saveCharacter(characterInfo: any) {
-    this.http.post(
+  createCharacter(character: any) {
+    return this.http.post(
       'http://localhost:3000/api/characters/save',
-      characterInfo,
-      {}
+      character
     );
   }
 }

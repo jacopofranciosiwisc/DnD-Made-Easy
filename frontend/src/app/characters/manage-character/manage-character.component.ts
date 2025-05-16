@@ -9,6 +9,8 @@ import { NotebookComponent } from './notebook/notebook.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SavingThrowsComponent } from './saving-throws/saving-throws.component';
+import { CharacterService } from '../../services/character.service';
+import { Router } from '@angular/router';
 
 interface Profile {
   name: string;
@@ -58,7 +60,11 @@ export class ManageCharacterComponent implements OnInit {
     profilePicture: '',
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private characterService: CharacterService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.http.get('assets/character.json').subscribe((data) => {
@@ -79,11 +85,15 @@ export class ManageCharacterComponent implements OnInit {
 
   updateCharacter(data: any, key: string) {
     this.modifiedCharacter[key] = data;
-    console.log('Character after the update: ', this.modifiedCharacter);
   }
 
-  saveCharacter() {
-    console.log('API call to save character');
+  createCharacter() {
+    this.characterService.createCharacter(this.modifiedCharacter).subscribe({
+      next: () => {
+        this.router.navigate(['characters']);
+      },
+      error: () => {},
+    });
   }
 
   updateProfile() {
@@ -92,7 +102,6 @@ export class ManageCharacterComponent implements OnInit {
   }
 
   editProfile() {
-    // Show modal again for editing profile
     this.showProfileModal = true;
   }
 
@@ -106,5 +115,9 @@ export class ManageCharacterComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  goBack() {
+    this.router.navigate(['characters']);
   }
 }

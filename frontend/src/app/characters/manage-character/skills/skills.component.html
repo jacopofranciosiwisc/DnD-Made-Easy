@@ -1,30 +1,40 @@
-<div class="skills-card">
-  <div
-    class="header"
-    style="display: flex; align-items: center; justify-content: space-between"
-  >
+<div class="skills">
+  <div class="header">
     <strong>Skills</strong>
     <button (click)="isModalOpen = true">Edit</button>
+  </div>
+  <div class="skill" *ngFor="let skill of skills | keyvalue">
+    <p>{{ skill.key }}</p>
+    <p [ngClass]="skill.value.proficiency ? 'proficient' : 'not-proficient'">
+      {{ skill.value.num }}
+    </p>
   </div>
 </div>
 
 <div class="modal" *ngIf="isModalOpen">
   <div class="modal-content">
-    <div
-      class="modal-header"
-      style="display: flex; justify-content: space-between; align-items: center"
-    >
-      <h3>Edit Skills</h3>
-      <button (click)="isModalOpen = false">&times;</button>
+    <h3>Edit Skills</h3>
+    <div *ngFor="let skill of skills | keyvalue">
+      <p>{{ skill.key }}</p>
+      <input
+        type="number"
+        [(ngModel)]="skills[skill.key].num"
+        min="-10"
+        max="20"
+        [value]="skill.value.num"
+        name="skills-{{ skill.key }}"
+        (input)="updateStat()"
+      />
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="skills[skill.key].proficiency"
+          name="skills-{{ skill.key }}"
+          (input)="updateStat()"
+        />
+        Proficient?
+      </label>
     </div>
-    <div class="modal-body">
-      <div class="skill" *ngFor="let skill of skills | keyvalue">
-        <p>{{ skill.key }}: +{{ skill.value }}</p>
-        <label>
-          <input type="checkbox" [(ngModel)]="proficient[skill.key]" />
-          Proficient
-        </label>
-      </div>
-    </div>
+    <button (click)="isModalOpen = false">Back</button>
   </div>
 </div>

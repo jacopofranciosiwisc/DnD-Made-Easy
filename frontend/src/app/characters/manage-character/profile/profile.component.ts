@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   @Input() profile: any = {};
   @Output() edit = new EventEmitter();
-  @Output() saveCharacter = new EventEmitter();
+  @Output() createCharacter = new EventEmitter();
 
   ngOnInit(): void {}
 
@@ -21,8 +21,8 @@ export class ProfileComponent implements OnInit {
     this.edit.emit();
   }
 
-  handleSaveCharacter() {
-    this.saveCharacter.emit();
+  handleCreateCharacter() {
+    this.createCharacter.emit();
   }
 
   goBack() {

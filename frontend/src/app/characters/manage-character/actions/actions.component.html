@@ -82,7 +82,7 @@
             [(ngModel)]="newAction.damageDies[i].diceType"
             name="dieType{{ i }}"
           >
-            <option *ngFor="let die of dieTypes" [value]="die">
+            <option *ngFor="let die of dieTypes" [ngValue]="die">
               d{{ die }}
             </option>
           </select>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,15 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
 })
-export class SkillsComponent implements OnInit {
-  @Input() skills: { [key: string]: number } = {};
-  proficient: { [key: string]: boolean } = {};
+export class SkillsComponent {
+  @Input() skills: {
+    [key: string]: { num: number; proficiency: boolean };
+  } = {};
+  @Output() update = new EventEmitter();
+
   isModalOpen: boolean = false;
 
-  ngOnInit() {}
+  updateStat() {
+    this.update.emit(this.skills);
+  }
 }
