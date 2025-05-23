@@ -1,0 +1,40 @@
+<div class="skills">
+  <div class="header">
+    <strong>Skills</strong>
+    <button (click)="isModalOpen = true">Edit</button>
+  </div>
+  <div class="skill" *ngFor="let skill of skills | keyvalue">
+    <p>{{ skill.key }}</p>
+    <p [ngClass]="skill.value.proficiency ? 'proficient' : 'not-proficient'">
+      {{ skill.value.num }}
+    </p>
+  </div>
+</div>
+
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <h3>Edit Skills</h3>
+    <div *ngFor="let skill of skills | keyvalue">
+      <p>{{ skill.key }}</p>
+      <input
+        type="number"
+        [(ngModel)]="skills[skill.key].num"
+        min="-10"
+        max="20"
+        [value]="skill.value.num"
+        name="skills-{{ skill.key }}"
+        (input)="updateStat()"
+      />
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="skills[skill.key].proficiency"
+          name="skills-{{ skill.key }}"
+          (input)="updateStat()"
+        />
+        Proficient?
+      </label>
+    </div>
+    <button (click)="isModalOpen = false">Back</button>
+  </div>
+</div>

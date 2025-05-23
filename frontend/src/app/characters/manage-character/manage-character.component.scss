@@ -1,0 +1,123 @@
+.main-card {
+  padding: 1rem;
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  justify-self: center;
+  gap: 1rem;
+  height: 200vh;
+  width: 80vw;
+  background: burlywood;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(#333, 0.5);
+}
+
+.card {
+  box-shadow: 5px 5px 15px rgba(#333, 0.5);
+  border-radius: 10px;
+  background: #fff;
+  padding: 1rem;
+}
+
+.profile {
+  grid-row: 1 / 4;
+  grid-column: 1 / -1;
+}
+
+.ability-scores {
+  grid-row: 4 / 8;
+  grid-column: 1 / 7;
+}
+
+.actions {
+  grid-row: 4 / 9;
+  grid-column: 7 / -1;
+}
+
+.inventory {
+  grid-row: 9 / 15;
+  grid-column: 7 / -1;
+}
+
+.skills {
+  grid-row: 12 / -1;
+  grid-column: 1 / 7;
+}
+
+.saving-throws {
+  grid-row: 8 / 12;
+  grid-column: 1 / 7;
+}
+
+.notebook {
+  grid-row: 15 / -1;
+  grid-column: 7 / -1;
+}
+
+.edit-profile {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #5d3a00;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* New styling for the profile creation screen (no overlay) */
+.profile-creation {
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 40vw;
+  border: 3px solid #5d3a00;
+  border-radius: 10px;
+  background-color: #f5f5dc; // parchment-like background
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.tavern-image {
+  width: 100%;
+  max-height: 9.375rem;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.profile-creation form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1rem;
+  column-gap: 1rem;
+}
+
+.profile-creation form input {
+  min-width: 1rem;
+}
+
+.profile-creation label {
+  font-weight: bold;
+}
+
+.profile-creation form :last-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+button {
+  font-size: large;
+  border-radius: 10px;
+  padding: 0.5rem;
+}

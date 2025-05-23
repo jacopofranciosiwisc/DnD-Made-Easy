@@ -1,0 +1,19 @@
+<div class="ability-scores">
+  <strong>Ability Scores</strong>
+  <div class="ability-score" *ngFor="let ability of abilities | keyvalue">
+    <p>{{ ability.key }}</p>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      [value]="ability.value.score ? ability.value.score : 10"
+      step="1"
+      (input)="updateStat($event, ability.key)"
+    />
+    <div class="ability-score-modifier">
+      <p>
+        {{ displayModifier(ability.value.score) }}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<div *ngIf="showProfileModal" class="profile-creation">
+  <div class="modal-header">
+    <img src="assets/tavern.jpg" alt="Tavern" class="tavern-image" />
+    <h2>Welcome, Traveler!</h2>
+    <p>
+      "Ah, a brave soul enters my tavern. Tell me your story and let destiny be
+      written!"
+    </p>
+  </div>
+  <form (ngSubmit)="updateProfile()" #profileForm="ngForm">
+    <label>Name:</label>
+    <input [(ngModel)]="profile.name" name="name" type="text" required />
+
+    <label>Race:</label>
+    <input [(ngModel)]="profile.race" name="race" type="text" required />
+
+    <label>Class:</label>
+    <input [(ngModel)]="profile.class" name="class" type="text" required />
+
+    <label>Age:</label>
+    <input [(ngModel)]="profile.age" name="age" type="text" required />
+
+    <label>Level:</label>
+    <input
+      [(ngModel)]="profile.level"
+      name="level"
+      type="number"
+      min="1"
+      required
+    />
+
+    <label>Health Points:</label>
+    <input [(ngModel)]="profile.hp" name="hp" type="number" min="1" required />
+
+    <label>Armor Class:</label>
+    <input [(ngModel)]="profile.ac" name="ac" type="number" min="1" required />
+
+    <label>Initiative:</label>
+    <input
+      [(ngModel)]="profile.initiative"
+      name="initiative"
+      type="number"
+      min="1"
+      required
+    />
+
+    <label>Profile Picture:</label>
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      required
+    />
+    <div class="buttons">
+      <button type="submit" [disabled]="profileForm.invalid">
+        Create Profile
+      </button>
+      <button (click)="goBack()">Go Back</button>
+    </div>
+  </form>
+</div>
+
+<div class="main-card" *ngIf="!showProfileModal">
+  <dnd-profile
+    class="profile"
+    [profile]="profile"
+    (edit)="editProfile()"
+    (createCharacter)="createCharacter()"
+  ></dnd-profile>
+  <dnd-ability-scores
+    class="ability-scores card"
+    [abilities]="defaultCharacter.abilities"
+    (update)="updateCharacter($event, 'abilities')"
+  ></dnd-ability-scores>
+
+  <dnd-saving-throws
+    class="saving-throws card"
+    [savingThrows]="defaultCharacter.savingThrows"
+    (update)="updateCharacter($event, 'savingThrows')"
+  ></dnd-saving-throws>
+
+  <dnd-actions
+    class="actions card"
+    (update)="updateCharacter($event, 'actions')"
+  ></dnd-actions>
+  <dnd-inventory
+    class="inventory card"
+    (update)="updateCharacter($event, 'inventory')"
+  ></dnd-inventory>
+  <dnd-skills
+    class="skills card"
+    [skills]="defaultCharacter.skills"
+    (update)="updateCharacter($event, 'skills')"
+  ></dnd-skills>
+  <dnd-notebook
+    class="notebook card"
+    (update)="updateCharacter($event, 'notebook')"
+  ></dnd-notebook>
+</div>

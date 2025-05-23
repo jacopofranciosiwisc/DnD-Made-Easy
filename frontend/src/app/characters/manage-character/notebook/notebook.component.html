@@ -1,0 +1,31 @@
+<div class="notebook">
+  <div class="tabs">
+    <button
+      [class.active]="activeTab === 'notes'"
+      (click)="setActiveTab('notes')"
+    >
+      Notes
+    </button>
+    <button
+      [class.active]="activeTab === 'backstory'"
+      (click)="setActiveTab('backstory')"
+    >
+      Backstory
+    </button>
+  </div>
+
+  <div class="tab-content">
+    <textarea
+      *ngIf="activeTab === 'notes'"
+      [(ngModel)]="notes"
+      placeholder="Write your notes here..."
+      (input)="updateNotebook($event, 'notes')"
+    ></textarea>
+    <textarea
+      *ngIf="activeTab === 'backstory'"
+      [(ngModel)]="backstory"
+      placeholder="Write your backstory here..."
+      (input)="updateNotebook($event, 'backstory')"
+    ></textarea>
+  </div>
+</div>

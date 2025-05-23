@@ -33,20 +33,28 @@ model Spell {
 
 //store all characters (player and npcs) in a session
 model Character {
-  id            String      @id @default(uuid())
-  sessionId     String      @map("session_id") //relation column that tracks the character to a specific session
-  session       Session     @relation(fields: [sessionId], references: [id]) //relationship between character and session tables. Lets us fetch the session a character belongs to
-  userId        String? // Match type with User.id
-  user          User?       @relation(fields: [userId], references: [id]) //relationship between character and user tables. Lets us fetch the user associated with a character
-  name          String // Character name
-  type          String // "player" or "npc"
-  hp            Int // Current HP
-  maxHp         Int // Max HP
-  ac            Int // Armor Class
-  statusEffects Json? // Active status effects (e.g., ["prone", "stunned"])
-  websiteUrl    String? // Optional link to the character's website
-  spells        Spell[] // Relation to spells
-  turnOrders    TurnOrder[] // Reverse relation to TurnOrder
+  id                  String      @id @default(uuid())
+  sessionId           String      @map("session_id") //relation column that tracks the character to a specific session
+  session             Session     @relation(fields: [sessionId], references: [id]) //relationship between character and session tables. Lets us fetch the session a character belongs to
+  userId              String? // Match type with User.id
+  user                User?       @relation(fields: [userId], references: [id]) //relationship between character and user tables. Lets us fetch the user associated with a character
+  name                String // Character name
+  type                String // "player" or "npc"
+  hp                  Int // Current HP
+  maxHp               Int // Max HP
+  ac                  Int // Armor Class
+  race                String // race
+  class               String // class
+  initiative          String // initiative
+  abilityScores       Json  // ability scores
+  skills              Json // skills
+  actions             Json // Attacks (not including spells)
+  inventory           Json //inventory
+  notebook            String[] // backstory and notes section
+  statusEffects       Json? // Active status effects (e.g., ["prone", "stunned"])
+  websiteUrl          String? // Optional link to the character's website
+  spells              Spell[] // Relation to spells
+  turnOrders          TurnOrder[] // Reverse relation to TurnOrder
 }
 
 //track the metadata of each session. The parent table, as each other table

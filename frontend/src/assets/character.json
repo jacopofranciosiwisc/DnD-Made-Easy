@@ -1,0 +1,76 @@
+{
+  "profile": {
+    "name": "",
+    "race": "",
+    "age": 24,
+    "level": 1,
+    "hp": 1,
+    "ac": 1,
+    "initiative": 1
+  },
+  "abilities": {
+    "Strength": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Dexterity": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Constitution": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Intelligence": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Wisdom": {
+      "score": 10,
+      "modifier": 0
+    },
+    "Charisma": {
+      "score": 10,
+      "modifier": 0
+    }
+  },
+  "savingThrows": {
+    "Strength": { "num": 0, "proficiency": false },
+    "Dexterity": { "num": 0, "proficiency": false },
+    "Constitution": { "num": 0, "proficiency": false },
+    "Intelligence": { "num": 0, "proficiency": false },
+    "Wisdom": { "num": 0, "proficiency": false },
+    "Charisma": { "num": 0, "proficiency": false }
+  },
+  "skills": {
+    "Acrobatics": { "num": 0, "proficiency": false },
+    "Animal Handling": { "num": 0, "proficiency": false },
+    "Arcana": { "num": 0, "proficiency": false },
+    "Athletics": { "num": 0, "proficiency": false },
+    "Deception": { "num": 0, "proficiency": false },
+    "History": { "num": 0, "proficiency": false },
+    "Insight": { "num": 0, "proficiency": false },
+    "Intimidation": { "num": 0, "proficiency": false },
+    "Investigation": { "num": 0, "proficiency": false },
+    "Medicine": { "num": 0, "proficiency": false },
+    "Nature": { "num": 0, "proficiency": false },
+    "Perception": { "num": 0, "proficiency": false },
+    "Performance": { "num": 0, "proficiency": false },
+    "Persuasion": { "num": 0, "proficiency": false },
+    "Religion": { "num": 0, "proficiency": false },
+    "Sleight of Hand": { "num": 0, "proficiency": false },
+    "Stealth": { "num": 0, "proficiency": false },
+    "Survival": { "num": 0, "proficiency": false }
+  },
+  "actions": [],
+  "inventory": [
+    {
+      "gold": 0,
+      "items": []
+    }
+  ],
+  "notebook": {
+    "notes": "",
+    "backstory": ""
+  }
+}

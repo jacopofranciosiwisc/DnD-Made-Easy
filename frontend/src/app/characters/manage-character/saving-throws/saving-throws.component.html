@@ -1,0 +1,40 @@
+<div class="saving-throws">
+  <div class="header">
+    <strong>Saving Throws</strong>
+    <button (click)="isModalOpen = true">Edit</button>
+  </div>
+  <div class="saving-throw" *ngFor="let throw of savingThrows | keyvalue">
+    <p>{{ throw.key }}</p>
+    <p [ngClass]="throw.value.proficiency ? 'proficient' : 'not-proficient'">
+      {{ throw.value.num }}
+    </p>
+  </div>
+</div>
+
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <h3>Edit Saving Throws</h3>
+    <div *ngFor="let throw of savingThrows | keyvalue">
+      <p>{{ throw.key }}</p>
+      <input
+        type="number"
+        [(ngModel)]="savingThrows[throw.key].num"
+        min="-10"
+        max="10"
+        [value]="throw.value.num"
+        name="savingThrow-{{ throw.key }}"
+        (input)="updateStat()"
+      />
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="savingThrows[throw.key].proficiency"
+          name="savingThrow-{{ throw.key }}"
+          (input)="updateStat()"
+        />
+        Proficient?
+      </label>
+    </div>
+    <button type="button" (click)="isModalOpen = false">Back</button>
+  </div>
+</div>
